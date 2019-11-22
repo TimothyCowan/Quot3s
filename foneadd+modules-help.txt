@@ -1,0 +1,32 @@
+import datetime
+dir(datetime)   # what methods did we just add?
+
+['MAXYEAR', 'MINYEAR', '__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', 'date', 'datetime', 'datetime_CAPI', 'sys', 'time', 'timedelta', 'timezone', 'tzinfo']
+
+#  to minimize what is imported, specify the method names
+
+from datetime import date,time,datetime
+from datetime import time
+
+#!/usr/bin/env python3
+##  was #!/bin/bash
+# foneadd.py -- add records to ~/fone
+# v2 -- add date to output
+# v3 -- create fone file in HOME directory, os dependent
+import datetime,os,platform
+# from datetime import datetime
+DSTMP=datetime.datetime.today()
+os.chdir(os.environ['HOME'])
+print('Using file fone in home directory : ',os.getcwd())
+FFILE = open("fone","a")
+ANS='notyet'
+while ( ANS[0] != 'q') :
+    FNAME = input('Enter first  name: ')
+    LNAME = input('Enter last   name: ')
+    FONE = input('Enter fone number: ')
+    #write.FFILE(FNAME, LNAME, FONE)
+    print (FNAME,LNAME,FONE,DSTMP,sep=' ',file=FFILE)
+    ANS = input('Enter C|continue or q|quit: ').lower()
+    if len(ANS) == 0:
+        ANS='c'
+FFILE.close()
